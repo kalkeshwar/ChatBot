@@ -7,14 +7,19 @@ import { Flex } from '@chakra-ui/react'
 
 const Chat = () => {
 
-  let [messages,setMessages]=useState([{
+  let [messages,setMessages]=useState([
+  {
+    role:"assistant",
+    content:"Hi,This is ChatBot by OpenAI"
+  },
+  {
+    role:"assistant",
+    content:"I hope your day is good"
+  },
+  {
     role:"assistant",
     content:"Hey! You can Ask anything here ,I will try my level best to give the Solutions."
   },
-  {
-    role:"user",
-    content:"what is programming language"
-  }
 ])
 
 const [currentMessage,setCurrentMessage]=useState("")
@@ -26,7 +31,7 @@ let [isTying,setIsTyping]=useState(false)
         <DividerLine/>
         <ChatDivison messages={messages} setMessages={setMessages} currentMessage={currentMessage} isTyping={isTying}/>
         <DividerLine/>
-        <Footer setMessages={setMessages} currentMessage={currentMessage} setCurrentMessage={setCurrentMessage} setTyping={setIsTyping}/>
+        <Footer setMessages={setMessages} currentMessage={currentMessage} setCurrentMessage={setCurrentMessage} isTyping={isTying} setTyping={setIsTyping}/>
     </Flex>
   )
 }

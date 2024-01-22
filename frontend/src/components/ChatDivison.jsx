@@ -1,5 +1,8 @@
 import { Flex, Text } from '@chakra-ui/react'
 import React, { useEffect,useRef } from 'react'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+
 
 const ChatDivison = (props) => {
     
@@ -20,22 +23,26 @@ const ChatDivison = (props) => {
                 message.role=="user"
                 ?(
                     <Flex w="100%" justify="flex-start">
-                        <Flex key={index} maxWidth="75%" flexWrap="wrap" bg="black" color="white" m="1" p="2" minWidth="300px" wordBreak="break-word" >
-                            {message.content}
+                        <Flex key={index} maxWidth="75%" flexWrap="wrap" bg="black" color="white" m="1" p="2" minWidth="300px">
+                            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                               {message.content}
+                            </ReactMarkdown>
                         </Flex>
                     </Flex>
                     
                 )
                 :(
                     <Flex w="100%" justifyContent='flex-end'>
-                        <Flex key={index} maxWidth="75%" flexWrap="wrap" bg="gray.100" color="black" m="1" p="2" minWidth="300px" wordBreak="break-word" >
-                            {message.content}
+                        <Flex key={index} maxWidth="75%" flexWrap="wrap" bg="gray.100" color="black" m="1" p="2" minWidth="300px" >
+                            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                                {message.content}
+                            </ReactMarkdown>
                         </Flex>
                     </Flex> 
                 )
             )}
         </Flex>
-        {isTyping&&<Flex position="absolute" bottom="1px" >OpenAI Bot is typing..., please wait</Flex>}
+        {isTyping&&<Flex position="absolute" bottom="1px" >OpenAI Bot is typing..., please wait for while...</Flex>}
     </Flex>
   )
 }
