@@ -18,14 +18,15 @@ const Chat = () => {
 ])
 
 const [currentMessage,setCurrentMessage]=useState("")
+let [isTying,setIsTyping]=useState(false)
 
   return (
     <Flex w="100%" h="100vh" flexDirection="column">
         <Header />
         <DividerLine/>
-        <ChatDivison messages={messages} setMessages={setMessages} currentMessage={currentMessage}/>
+        <ChatDivison messages={messages} setMessages={setMessages} currentMessage={currentMessage} isTyping={isTying}/>
         <DividerLine/>
-        <Footer messages={messages} setMessages={setMessages} currentMessage={currentMessage} setCurrentMessage={setCurrentMessage}/>
+        <Footer setMessages={setMessages} currentMessage={currentMessage} setCurrentMessage={setCurrentMessage} setTyping={setIsTyping}/>
     </Flex>
   )
 }
