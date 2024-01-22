@@ -12,10 +12,8 @@ const handleMessage = async(req,res)=>{
             model:"gpt-3.5-turbo",
             messages:[{"role":"user","content":`${content}`}]
         })
-        console.log(response.choices[0])
         return res.status(200).json({success:true,data:response.choices[0].message.content});
     } catch (err) {
-        console.log(err)
         return res.status(500).json({success:false,error:err.message})
     }
 }
