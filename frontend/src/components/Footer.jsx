@@ -12,7 +12,7 @@ const Footer = (props) => {
     setCurrentMessage("");
     const body=JSON.stringify(newMessage)
     setTyping(true)
-    const response= await fetch("http://localhost:3001/send-message",
+    const response= await fetch("https://chatbot-40q0.onrender.com/send-message",
     {
       method:'POST',
       headers:{
