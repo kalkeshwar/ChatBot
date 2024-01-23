@@ -6,7 +6,7 @@ import remarkGfm from 'remark-gfm'
 
 const ChatDivison = (props) => {
     
-    const {messages,currentMessage,setMessages,isTyping}=props
+    const {messages,currentMessage,setMessages,isTyping,currentResponse}=props
     const chatContainerRef = useRef(null);
 
   // Scroll to the bottom of the chat container when messages change
@@ -14,7 +14,7 @@ const ChatDivison = (props) => {
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
     }
-  }, [messages]);
+  }, [messages,currentResponse]);
 
   return (
     <Flex w="100%" h="75%" flexDirection="column" position="relative">
@@ -41,6 +41,15 @@ const ChatDivison = (props) => {
                     </Flex> 
                 )
             )}
+            {isTyping && 
+                <Flex w="100%" justifyContent='flex-end'>
+                    <Flex maxWidth="75%" flexWrap="wrap" bg="gray.100" color="black" m="1" p="2" minWidth="300px" >
+                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                            {currentResponse}
+                        </ReactMarkdown>
+                    </Flex>
+                </Flex> 
+            }
         </Flex>
         {isTyping&&<Flex position="absolute" bottom="1px" >OpenAI Bot is typing..., please wait for while...</Flex>}
     </Flex>
