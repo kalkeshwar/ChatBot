@@ -4,7 +4,7 @@
   "description": "An openai chatbot api which uses openai api and send responses according to the input messages",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
