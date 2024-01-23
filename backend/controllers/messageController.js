@@ -8,13 +8,20 @@ const openai= new OpenAI({key:apiKey})
 const handleMessage = async(req,res)=>{
     const content = req.body.content;
     try {
-        const response = await openai.chat.completions.create({
+        const stream = await openai.chat.completions.create({
             model:"gpt-3.5-turbo",
+            stream:true,
             messages:[{"role":"user","content":`${content}`}]
-        })
-        return res.status(200).json({success:true,data:response.choices[0].message.content});
+    })
+     
+    for await (const part of stream) {
+        const chunk = part.choices[0].delta.content || "";
+        res.write(chunk)
+    }
+    res.end()
     } catch (err) {
-        return res.status(500).json({success:false,error:err.message})
+        console.log(err);
+        res.write(err.message)
     }
 }
 
